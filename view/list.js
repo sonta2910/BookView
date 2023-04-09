@@ -4,43 +4,38 @@ function findAll() {
         url: "http://localhost:8080/books",
         type: "GET",
         success(data) {
-            displayBook(data)
+            let arr = data
+            let context = `<table border="1"><tr>
+                            <th>STT</th>
+                            <th>Book Code</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                            <th colspan="2">Action</th>
+                            </tr>`
+            for (let i = 0; i < arr.length; i++) {
+                context += `<tr>
+                            <td>${i + 1}</td>
+                            <td>${arr[i].bookCode}</td> 
+                            <td>${arr[i].name}</a></td>
+                            <td>${arr[i].author}</a></td>
+                            <td>${arr[i].price}</a></td>
+                            <td><button onclick="updateForm(${arr[i].id})">Update</button></td>
+                          
+                            <td><button onclick="deleteBook(${arr[i].id})">Delete</button></td>
+                            </tr>`
+            }
+            context += `</table>`
+            document.getElementById("display").innerHTML = context
+            $("#form").hide()
+            $("#display").show()
+            $("#total").show()
+            $("#result").hide()
+            $("#searchAuthor").hide()
+            $("#price").hide()
         }
     })
 }
-function displayBook(data) {
-    let arr = data
-    let context = `<table border="1"><tr>
-                    <th>STT</th>
-                    <th>Book Code</th>
-                    <th> Name</th>
-                    <th> Author</th>
-                    <th> Price</th>
-                    <th colspan="2">Action</th>
-                    </tr>`
-    for (let i = 0; i < arr.length; i++) {
-        context += `<tr>
-                    <td>${i + 1}</td>
-                    <td>${arr[i].bookCode}</td> 
-                    <td> ${arr[i].name}</a></td>
-                    <td> ${arr[i].author}</a></td>
-                    <td> ${arr[i].price}</a></td>
-                    <td><button onclick="updateForm(${arr[i].id})">Update</button></td>
-                  
-                    <td><button onclick="deleteBook(${arr[i].id})">Delete</button></td>
-                    </tr>`
-    }
-    context += `</table>`
-    document.getElementById("display").innerHTML = context
-    $("#form").hide()
-    $("#display").show()
-    $("#total").show()
-    $("#result").hide()
-    $("#searchAuthor").hide()
-    $("#price").hide()
-}
-    
-
 
 function createForm() {
     $("#bookCode").val("")
@@ -99,7 +94,7 @@ function updateBook(id){
         bookCode: $("#bookCode").val(),
         name: $("#name").val(),
         author: $("#author").val(),
-        price: $("#price").val(),
+        price: $("#price").val()
     }
     $.ajax({
         url: "http://localhost:8080/books",
@@ -138,9 +133,9 @@ function searchByName() {
     $.ajax({
         url: "http://localhost:8080/books/searchByName?name=" + name,
         type: "GET",
-        success: function (data) {
-            let arr = data
-    let context = `<table border="1"><tr>
+        success: function (data1) {
+            let arr = data1
+    let context1 = `<table border="1"><tr>
                     <th>STT</th>
                     <th>Book Code</th>
                     <th> Name</th>
@@ -149,7 +144,7 @@ function searchByName() {
                     <th colspan="2">Action</th>
                     </tr>`
     for (let i = 0; i < arr.length; i++) {
-        context += `<tr>
+        context1 += `<tr>
                     <td>${i + 1}</td>
                     <td>${arr[i].bookCode}</td> 
                     <td> ${arr[i].name}</a></td>
@@ -160,8 +155,8 @@ function searchByName() {
                     <td><button onclick="deleteBook(${arr[i].id})">Delete</button></td>
                     </tr>`
     }
-    context += `</table>`
-    document.getElementById("result").innerHTML=context;
+    context1 += `</table>`
+    document.getElementById("result").innerHTML=context1;
         },
     
     });
@@ -176,9 +171,9 @@ function searchByAuthor() {
     $.ajax({
         url: "http://localhost:8080/books/search?author=" + author,
         type: "GET",
-        success: function (data) {
-            let arr = data
-    let context = `<table border="1"><tr>
+        success: function (data2) {
+            let arr = data2
+    let context2 = `<table border="1"><tr>
                     <th>STT</th>
                     <th>Book Code</th>
                     <th> Name</th>
@@ -187,7 +182,7 @@ function searchByAuthor() {
                     <th colspan="2">Action</th>
                     </tr>`
     for (let i = 0; i < arr.length; i++) {
-        context += `<tr>
+        context2 += `<tr>
                     <td>${i + 1}</td>
                     <td>${arr[i].bookCode}</td> 
                     <td> ${arr[i].name}</a></td>
@@ -198,8 +193,8 @@ function searchByAuthor() {
                     <td><button onclick="deleteBook(${arr[i].id})">Delete</button></td>
                     </tr>`
     }
-    context += `</table>`
-    document.getElementById("searchAuthor").innerHTML=context;
+    context2 += `</table>`
+    document.getElementById("searchAuthor").innerHTML=context2;
         },
     
     });
@@ -213,8 +208,8 @@ function showTotalPrice() {
         url: "http://localhost:8080/books/showSumPrice",
         type: "GET",
         dataType: "json",
-        success: function (data) {
-            $("#total-price").text(data);
+        success: function (data3) {
+            $("#total-price").text(data3);
         }
     });
 }
@@ -226,9 +221,9 @@ function searchByPrice() {
     $.ajax({
         url: "http://localhost:8080/books/searchByPrice?minPrice=" + minPrice+"&maxPrice="+maxPrice,
         type: "GET",
-        success: function (data) {
-            let arr = data
-    let context = `<table border="1"><tr>
+        success: function (data4) {
+            let arr = data4
+    let context3 = `<table border="1"><tr>
                     <th>STT</th>
                     <th>Book Code</th>
                     <th> Name</th>
@@ -237,7 +232,7 @@ function searchByPrice() {
                     <th colspan="2">Action</th>
                     </tr>`
     for (let i = 0; i < arr.length; i++) {
-        context += `<tr>
+        context3 += `<tr>
                     <td>${i + 1}</td>
                     <td>${arr[i].bookCode}</td> 
                     <td> ${arr[i].name}</a></td>
@@ -248,9 +243,9 @@ function searchByPrice() {
                     <td><button onclick="deleteBook(${arr[i].id})">Delete</button></td>
                     </tr>`
     }
-    context += `</table>`
-    document.getElementById("price").innerHTML=context;
-        },
+    context3 += `</table>`
+    document.getElementById("price").innerHTML=context3;
+        }
     
     });
     $("#price").show()

@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <style>
+    <!-- <style>
         #form {
-            display: none;
+            display: ;
         }
-    </style>
+    </style> -->
 </head>
 <body>
 
-    <div id="search">
+<div id="search">
             <label><input type="text" id="name"></label>
             <button  onclick="searchByName()">Search By Name</button>
-    </div>
-    <div id="searchByAuthor">
+</div>
+ <div id="searchByAuthor">
         <label><input type="text" id="author"></label>
         <button  onclick="searchByAuthor()">Search By Author</button>
 </div>
@@ -44,22 +44,21 @@
         </tr>
         <tr>
             <td>Book Code</td>
-            <td><label><input type="text" id="bookCode"></label></td>
+            <td><label><input type="text" id="bookCode" name="bookCode"></label></td>
         </tr>
         <tr>
             <td> Name</td>
-            <td><label><input type="text" id="name"></label></td>
+            <td><label><input type="text" id="name" name="name"></label></td>
         </tr>
         <tr>
             <td> Author</td>
-            <td><label><input type="text" id="author"></label></td>
+            <td><label><input type="text" id="author" name="author"></label></td>
         </tr>
         <tr>
             <td> Price</td>
-            <td><label><input type="text" id="price"></label></td>
+            <td><label><input type="text" id="price" name="price"></label></td>
         </tr>
         <tr>
-            <td></td>
             <td>
                 <button id="action">Create</button>&nbsp;
                 <button onclick="backHome()">Back</button>
