@@ -1,6 +1,9 @@
 let arr;
 function findAll() {
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
         url: "http://localhost:8080/books",
         type: "GET",
         success(data) {
@@ -58,6 +61,7 @@ function createBook(){
     }
     $.ajax({
         headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
@@ -72,6 +76,9 @@ function createBook(){
 }
 function updateForm(id){
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
         url: `http://localhost:8080/books/${id}`,
         type: "GET",
         success(data){
@@ -100,6 +107,7 @@ function updateBook(id){
         url: "http://localhost:8080/books",
         type: "POST",
         headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
@@ -113,6 +121,9 @@ function updateBook(id){
 function deleteBook(id) {
     if (confirm("Are You Sure To Delete This Book?")) {
         $.ajax({
+            headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token"),
+            },
             url: `http://localhost:8080/books/${id}`,
             type: "DELETE",
             success() {
@@ -131,6 +142,9 @@ function backHome() {
 function searchByName() {
     var name = $("#name").val();
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
         url: "http://localhost:8080/books/searchByName?name=" + name,
         type: "GET",
         success: function (data1) {
@@ -169,6 +183,9 @@ function searchByName() {
 function searchByAuthor() {
     var author = $("#author").val();
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
         url: "http://localhost:8080/books/search?author=" + author,
         type: "GET",
         success: function (data2) {
@@ -205,6 +222,9 @@ $("#price").hide()
 }
 function showTotalPrice() {
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
         url: "http://localhost:8080/books/showSumPrice",
         type: "GET",
         dataType: "json",
@@ -219,6 +239,9 @@ function searchByPrice() {
         maxPrice= $("#maxPrice").val();
     
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
         url: "http://localhost:8080/books/searchByPrice?minPrice=" + minPrice+"&maxPrice="+maxPrice,
         type: "GET",
         success: function (data4) {
